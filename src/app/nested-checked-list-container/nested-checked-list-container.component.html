@@ -1,11 +1,13 @@
-<app-nested-checked-list
-  [items]="items"
-  (itemsChanged)="onItemChanged($event)"
-  (subItemsChanged)="onSubItemsChanged($event)"
-></app-nested-checked-list>
-<button (click)="onSubmit()">Submit</button>
-
 <div>
-  <div>submitted:</div>
-  {{submittedChanges}}
+  <app-nested-checked-list
+    [items]="items"
+    (itemsChanged)="onItemChanged($event)"
+    (subItemsChanged)="onSubItemsChanged($event)"
+  ></app-nested-checked-list>
+  <button (click)="onSubmit()">Submit</button>
+
+  <div>
+    <div>submitted:</div>
+    {{submittedChanges}}
+  </div>
 </div>
