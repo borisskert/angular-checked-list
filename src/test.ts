@@ -6,7 +6,7 @@ import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
-import 'jest-preset-angular';
+// import 'jest-preset-angular';
 
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(

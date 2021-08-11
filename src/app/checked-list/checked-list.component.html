@@ -1,0 +1,11 @@
+<div>
+  <div *ngFor="let item of items">
+    <app-checked-list-item
+      [title]="item.title"
+      [description]="item.description"
+      [id]="item.id"
+      [isChecked]="item.isChecked"
+      (check)="onCheck($event, item.id)"
+    ></app-checked-list-item>
+  </div>
+</div>
