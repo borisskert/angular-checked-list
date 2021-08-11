@@ -1,8 +1,10 @@
-<app-checked-list
+<app-nested-checked-list
   [items]="items"
   (itemsChanged)="onItemChanged($event)"
-></app-checked-list>
+  (subItemsChanged)="onSubItemsChanged($event)"
+></app-nested-checked-list>
 
 <div>
   {{changes | json}}
+  {{subChanges | json}}
 </div>

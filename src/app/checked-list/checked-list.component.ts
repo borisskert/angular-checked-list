@@ -7,8 +7,9 @@ export interface Item {
   isChecked: boolean
 }
 
-export interface Changes {
-  [id: string]: boolean
+export interface ItemChange {
+  id: string;
+  isChecked: boolean;
 }
 
 @Component({
@@ -20,25 +21,15 @@ export class CheckedListComponent implements OnInit {
 
   @Input() items: Item[] = [];
 
-  @Output() itemsChanged: EventEmitter<Changes> = new EventEmitter<{}>();
-
-  private changes: Changes = {};
+  @Output() itemsChanged: EventEmitter<ItemChange> = new EventEmitter<ItemChange>();
 
   ngOnInit(): void {
-    this.changes = this.items.map(item => ({
-      [item.id]: item.isChecked
-    })).reduce(
-      (p, c) => ({...p, ...c}),
-      {}
-    );
   }
 
   onCheck($event: boolean, id: string) {
-    this.changes = {
-      ...this.changes,
-      [id]: $event
-    };
-
-    this.itemsChanged.emit(this.changes);
+    this.itemsChanged.emit({
+      id,
+      isChecked: $event
+    });
   }
 }

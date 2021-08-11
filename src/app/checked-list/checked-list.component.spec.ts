@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CheckedListComponent } from './checked-list.component';
+import {CheckedListComponent} from './checked-list.component';
 import {CheckedListItemComponent} from "../checked-list-item/checked-list-item.component";
 
 describe('CheckedListComponent', () => {
@@ -14,14 +14,14 @@ describe('CheckedListComponent', () => {
         CheckedListItemComponent,
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckedListComponent);
     component = fixture.componentInstance;
 
-    component.items =[
+    component.items = [
       {
         id: 'id1',
         title: 'title 1',
@@ -53,8 +53,8 @@ describe('CheckedListComponent', () => {
 
     it('should emit checked items', () => {
       expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(1, {
-        'id1': true,
-        'id2': false,
+        id: 'id1',
+        isChecked: true,
       });
     });
 
@@ -66,8 +66,8 @@ describe('CheckedListComponent', () => {
 
       it('should emit checked items', () => {
         expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(2, {
-          'id1': true,
-          'id2': true,
+          id: 'id2',
+          isChecked: true,
         });
       });
     });
@@ -80,8 +80,8 @@ describe('CheckedListComponent', () => {
 
       it('should emit checked items', () => {
         expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(2, {
-          'id1': false,
-          'id2': false,
+          id: 'id1',
+          isChecked: false,
         });
       });
     });

@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CheckedListItemComponent } from './checked-list-item.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {CheckedListItemComponent} from './checked-list-item.component';
 
 describe('CheckedListItemComponent', () => {
   let component: CheckedListItemComponent;
@@ -7,9 +7,9 @@ describe('CheckedListItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CheckedListItemComponent ]
+      declarations: [CheckedListItemComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

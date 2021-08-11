@@ -1,0 +1,16 @@
+<div>
+  <input
+    id="list-item-{{id}}"
+    type="checkbox"
+    [checked]="isChecked"
+    (change)="onCheck($event)"
+  >
+  <label>
+    {{title}}
+  </label>
+  <p>{{description}}</p>
+  <app-checked-list
+    [items]="subItems"
+    (itemsChanged)="onSubItemChanged($event)"
+  ></app-checked-list>
+</div>

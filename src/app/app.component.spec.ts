@@ -1,9 +1,10 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
-import {By} from "@angular/platform-browser";
 import {CheckedListComponent} from "./checked-list/checked-list.component";
 import {CheckedListItemComponent} from "./checked-list-item/checked-list-item.component";
+import {NestedCheckedListComponent} from "./nested-checked-list/nested-checked-list.component";
+import {NestedCheckedListItemComponent} from "./nested-checked-list-item/nested-checked-list-item.component";
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -16,6 +17,8 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
+        NestedCheckedListComponent,
+        NestedCheckedListItemComponent,
         CheckedListComponent,
         CheckedListItemComponent,
       ],
