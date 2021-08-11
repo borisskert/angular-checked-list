@@ -15,8 +15,11 @@ export class NestedCheckedListItemComponent implements OnInit {
   @Input() subItems: Item[] = []
   @Input() isChecked: boolean = false;
 
-  @Output() check: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() itemChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() subItemsChange: EventEmitter<ItemChange> = new EventEmitter<ItemChange>();
+
+  public isIndeterminate: boolean = false;
+  public isCollapsed: boolean = true;
 
   constructor() {
   }
@@ -32,10 +35,30 @@ export class NestedCheckedListItemComponent implements OnInit {
       isChecked: hasBeenChecked
     }));
 
-    this.check.emit(hasBeenChecked);
+    this.itemChange.emit(hasBeenChecked);
   }
 
   onSubItemChanged($event: ItemChange) {
+    this.subItems = this.subItems.map(subItem => {
+      if (subItem.id === $event.id) {
+        return {
+          ...subItem,
+          isChecked: $event.hasBeenChecked,
+        };
+      } else {
+        return subItem;
+      }
+    });
+
+    this.isIndeterminate = this.subItems.some(subItem => subItem.isChecked)
+      && this.subItems.some(subItem => !subItem.isChecked);
+
+    this.isChecked = this.subItems.filter(subItem => subItem.isChecked).length === this.subItems.length
+
     this.subItemsChange.emit($event);
+  }
+
+  onCollapse() {
+    this.isCollapsed = !this.isCollapsed;
   }
 }

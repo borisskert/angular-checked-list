@@ -5,6 +5,7 @@ import {CheckedListComponent} from "./checked-list/checked-list.component";
 import {CheckedListItemComponent} from "./checked-list-item/checked-list-item.component";
 import {NestedCheckedListComponent} from "./nested-checked-list/nested-checked-list.component";
 import {NestedCheckedListItemComponent} from "./nested-checked-list-item/nested-checked-list-item.component";
+import {NestedCheckedListContainerComponent} from "./nested-checked-list-container/nested-checked-list-container.component";
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
+        NestedCheckedListContainerComponent,
         NestedCheckedListComponent,
         NestedCheckedListItemComponent,
         CheckedListComponent,

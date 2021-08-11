@@ -98,7 +98,7 @@ describe('NestedCheckedListComponent', () => {
     it('should emit changes', () => {
       expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(1, {
         id: 'id1',
-        isChecked: true,
+        hasBeenChecked: true,
       });
     });
 
@@ -111,7 +111,7 @@ describe('NestedCheckedListComponent', () => {
       it('should emit changes', () => {
         expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(2, {
           id: 'id2',
-          isChecked: true,
+          hasBeenChecked: true,
         });
       });
 
@@ -124,7 +124,7 @@ describe('NestedCheckedListComponent', () => {
         it('should emit changes', () => {
           expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(3, {
             id: 'id1',
-            isChecked: false,
+            hasBeenChecked: false,
           });
         });
       });
@@ -133,6 +133,11 @@ describe('NestedCheckedListComponent', () => {
 
   describe('when select first parent`s first subitem item', () => {
     beforeEach(() => {
+      const collapseButton = fixture.debugElement.nativeElement.querySelector('.test-collapse-button-id1');
+      collapseButton.click();
+
+      fixture.detectChanges();
+
       const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-id11');
       checkBox.click();
     });
@@ -141,12 +146,17 @@ describe('NestedCheckedListComponent', () => {
       expect(component.subItemsChanged.emit).toHaveBeenNthCalledWith(1, {
         id: 'id1',
         subItemId: 'id11',
-        isChecked: true,
+        hasBeenChecked: true,
       });
     });
 
     describe('when select second parent`s third subitem item', () => {
       beforeEach(() => {
+        const collapseButton = fixture.debugElement.nativeElement.querySelector('.test-collapse-button-id2');
+        collapseButton.click();
+
+        fixture.detectChanges();
+
         const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-id23');
         checkBox.click();
       });
@@ -155,7 +165,7 @@ describe('NestedCheckedListComponent', () => {
         expect(component.subItemsChanged.emit).toHaveBeenNthCalledWith(2, {
           id: 'id2',
           subItemId: 'id23',
-          isChecked: true,
+          hasBeenChecked: true,
         });
       });
     });

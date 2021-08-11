@@ -9,7 +9,7 @@ export interface Item {
 
 export interface ItemChange {
   id: string;
-  isChecked: boolean;
+  hasBeenChecked: boolean;
 }
 
 @Component({
@@ -29,7 +29,7 @@ export class CheckedListComponent implements OnInit {
   onCheck($event: boolean, id: string) {
     this.itemsChanged.emit({
       id,
-      isChecked: $event
+      hasBeenChecked: $event
     });
   }
 }

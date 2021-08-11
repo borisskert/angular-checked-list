@@ -54,7 +54,7 @@ describe('CheckedListComponent', () => {
     it('should emit checked items', () => {
       expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(1, {
         id: 'id1',
-        isChecked: true,
+        hasBeenChecked: true,
       });
     });
 
@@ -67,7 +67,7 @@ describe('CheckedListComponent', () => {
       it('should emit checked items', () => {
         expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(2, {
           id: 'id2',
-          isChecked: true,
+          hasBeenChecked: true,
         });
       });
     });
@@ -81,7 +81,7 @@ describe('CheckedListComponent', () => {
       it('should emit checked items', () => {
         expect(component.itemsChanged.emit).toHaveBeenNthCalledWith(2, {
           id: 'id1',
-          isChecked: false,
+          hasBeenChecked: false,
         });
       });
     });

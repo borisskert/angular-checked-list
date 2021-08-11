@@ -1,12 +1,12 @@
-<div>
+<div class="checked-list-item__container">
   <input
     id="list-item-{{id}}"
     type="checkbox"
     [checked]="isChecked"
     (change)="onCheck($event)"
   >
-  <label>
+  <label class="checked-list-item__title">
     {{title}}
   </label>
-  <p>{{description}}</p>
+  <p class="checked-list-item__description">{{description}}</p>
 </div>

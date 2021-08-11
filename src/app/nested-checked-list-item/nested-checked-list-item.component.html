@@ -1,15 +1,19 @@
-<div>
+<div class="nested-checked-list-item__container">
   <input
     id="list-item-{{id}}"
     type="checkbox"
     [checked]="isChecked"
+    [indeterminate]="isIndeterminate"
     (change)="onCheck($event)"
   >
   <label>
     {{title}}
   </label>
   <p>{{description}}</p>
+  <button class="test-collapse-button-{{id}}" (click)="onCollapse()">{{isCollapsed ? '+' : '-'}}</button>
   <app-checked-list
+    *ngIf="!isCollapsed"
+    class="nested-checked-list-item__sub-item-list"
     [items]="subItems"
     (itemsChanged)="onSubItemChanged($event)"
   ></app-checked-list>

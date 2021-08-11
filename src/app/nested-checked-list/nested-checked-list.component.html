@@ -7,7 +7,7 @@
       [isChecked]="item.isChecked"
       [subItems]="item.subItems"
       (subItemsChange)="onSubItemsChanged($event, item.id)"
-      (check)="onCheck($event, item.id)"
+      (itemChange)="onCheck($event, item.id)"
     ></app-nested-checked-list-item>
   </div>
 </div>

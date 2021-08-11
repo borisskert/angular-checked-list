@@ -12,7 +12,7 @@ export interface ParentItem {
 export interface SubItemsChange {
   id: string;
   subItemId: string;
-  isChecked: boolean;
+  hasBeenChecked: boolean;
 }
 
 @Component({
@@ -37,14 +37,14 @@ export class NestedCheckedListComponent implements OnInit {
     this.subItemsChanged.emit({
       id,
       subItemId: $event.id,
-      isChecked: $event.isChecked,
+      hasBeenChecked: $event.hasBeenChecked,
     });
   }
 
   onCheck($event: boolean, id: string) {
     this.itemsChanged.emit({
       id,
-      isChecked: $event
+      hasBeenChecked: $event
     });
   }
 }
