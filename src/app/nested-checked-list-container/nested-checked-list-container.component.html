@@ -4,7 +4,7 @@
     (itemsChanged)="onItemChanged($event)"
     (subItemsChanged)="onSubItemsChanged($event)"
   ></app-nested-checked-list>
-  <button (click)="onSubmit()">Submit</button>
+  <button class="test-submit-button" [disabled]="submitDisabled" (click)="onSubmit()">Submit</button>
 
   <div>
     <div>submitted:</div>

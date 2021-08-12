@@ -141,7 +141,7 @@ export class NestedCheckedListContainerComponent implements OnInit {
   onItemChanged($event: ItemChange) {
     const item = this.items.find(item => item.id === $event.id);
 
-    if(!item) {
+    if (!item) {
       throw new Error('item not found');
     }
 
@@ -149,6 +149,14 @@ export class NestedCheckedListContainerComponent implements OnInit {
     this.itemChanges[$event.id].subItems = item.subItems.map(subItem => ({
       [subItem.id]: $event.hasBeenChecked,
     })).reduce((p, c) => ({...p, ...c}), {})
+  }
+
+  get submitDisabled(): boolean {
+    return !Object.entries(this.itemChanges).map(
+      ([_, value]) => value.hasBeenChecked
+        || Object.entries(value.subItems)
+          .map(([_, value]) => value).reduce((p, c) => (p || c), false))
+      .reduce((p, c) => p || c, false);
   }
 
   onSubItemsChanged($event: SubItemsChange) {

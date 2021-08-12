@@ -32,4 +32,89 @@ describe('NestedCheckedListContainerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should disable submit button', () => {
+    const submitButton = fixture.debugElement.nativeElement.querySelector('.test-submit-button');
+    expect(submitButton.disabled).toBe(true);
+  });
+
+  describe('when check parent-item', () => {
+    beforeEach(() => {
+      const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-1');
+      checkBox.click();
+
+      fixture.detectChanges();
+    });
+
+    it('should enable submit button', () => {
+      const submitButton = fixture.debugElement.nativeElement.querySelector('.test-submit-button');
+      expect(submitButton.disabled).toBe(false);
+    });
+
+    describe('when check child-item', () => {
+      beforeEach(() => {
+        const collapseButton = fixture.debugElement.nativeElement.querySelector('.test-collapse-button-1');
+        collapseButton.click();
+
+        fixture.detectChanges();
+
+        const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-11');
+        checkBox.click();
+
+        fixture.detectChanges();
+      });
+
+      it('should enable submit button', () => {
+        const submitButton = fixture.debugElement.nativeElement.querySelector('.test-submit-button');
+        expect(submitButton.disabled).toBe(false);
+      });
+    });
+
+    describe('when uncheck parent-item', () => {
+      beforeEach(() => {
+        const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-1');
+        checkBox.click();
+
+        fixture.detectChanges();
+      });
+
+      it('should enable submit button', () => {
+        const submitButton = fixture.debugElement.nativeElement.querySelector('.test-submit-button');
+        expect(submitButton.disabled).toBe(true);
+      });
+    });
+  });
+
+  describe('when check child-item', () => {
+    beforeEach(() => {
+      const collapseButton = fixture.debugElement.nativeElement.querySelector('.test-collapse-button-1');
+      collapseButton.click();
+
+      fixture.detectChanges();
+
+      const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-11');
+      checkBox.click();
+
+      fixture.detectChanges();
+    });
+
+    it('should enable submit button', () => {
+      const submitButton = fixture.debugElement.nativeElement.querySelector('.test-submit-button');
+      expect(submitButton.disabled).toBe(false);
+    });
+
+    describe('when uncheck child-item', () => {
+      beforeEach(() => {
+        const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-11');
+        checkBox.click();
+
+        fixture.detectChanges();
+      });
+
+      it('should enable submit button', () => {
+        const submitButton = fixture.debugElement.nativeElement.querySelector('.test-submit-button');
+        expect(submitButton.disabled).toBe(true);
+      });
+    });
+  });
 });
