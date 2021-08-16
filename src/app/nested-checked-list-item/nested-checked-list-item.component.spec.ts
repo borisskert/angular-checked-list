@@ -48,11 +48,87 @@ describe('NestedCheckedListItemComponent', () => {
     ];
     component.isChecked = false;
 
+    jest.spyOn(component.itemChange, 'emit');
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('when check parent item', () => {
+    beforeEach(() => {
+      const collapseButton = fixture.debugElement.nativeElement.querySelector('.test-collapse-button-id2');
+      collapseButton.click();
+
+      fixture.detectChanges();
+
+      const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-id2');
+      checkBox.click();
+
+      fixture.detectChanges();
+    });
+
+    it('should emit parent item change', () => {
+      expect(component.itemChange.emit).toHaveBeenNthCalledWith(1, true);
+    });
+
+    it('should check children`s checkboxes', () => {
+      const checkBox21 = fixture.debugElement.nativeElement.querySelector('#list-item-id21');
+      expect(checkBox21.checked).toBe(true);
+
+      const checkBox22 = fixture.debugElement.nativeElement.querySelector('#list-item-id22');
+      expect(checkBox22.checked).toBe(true);
+
+      const checkBox23 = fixture.debugElement.nativeElement.querySelector('#list-item-id23');
+      expect(checkBox23.checked).toBe(true);
+    });
+
+    describe('when uncheck first children`s checkbox', () => {
+      beforeEach(() => {
+        const checkBox21 = fixture.debugElement.nativeElement.querySelector('#list-item-id21');
+        checkBox21.click();
+
+        fixture.detectChanges();
+      });
+
+      it('should show indeterminate state in parent`s checkbox', () => {
+        const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-id2');
+        expect(checkBox.indeterminate).toBe(true);
+        expect(checkBox.checked).toBe(false);
+      });
+
+      it('should NOT emit parent item change', () => {
+        expect(component.itemChange.emit).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('when uncheck all children`s checkboxes', () => {
+      beforeEach(() => {
+        const checkBox21 = fixture.debugElement.nativeElement.querySelector('#list-item-id21');
+        checkBox21.click();
+        fixture.detectChanges();
+
+        const checkBox22 = fixture.debugElement.nativeElement.querySelector('#list-item-id22');
+        checkBox22.click();
+        fixture.detectChanges();
+
+        const checkBox23 = fixture.debugElement.nativeElement.querySelector('#list-item-id23');
+        checkBox23.click();
+        fixture.detectChanges();
+      });
+
+      it('should show unchecked state in parent`s checkbox', () => {
+        const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-id2');
+        expect(checkBox.indeterminate).toBe(false);
+        expect(checkBox.checked).toBe(false);
+      });
+
+      it('should emit parent item change', () => {
+        expect(component.itemChange.emit).toHaveBeenNthCalledWith(2, false);
+      });
+    });
   });
 
   describe('when check one sub-item', () => {
@@ -98,8 +174,8 @@ describe('NestedCheckedListItemComponent', () => {
 
         it('should NOT show indeterminate checkbox', () => {
           const checkBox = fixture.debugElement.nativeElement.querySelector('#list-item-id2');
-          expect(checkBox.indeterminate).toBe(false);
           expect(checkBox.checked).toBe(true);
+          expect(checkBox.indeterminate).toBe(false);
         });
       });
     });
