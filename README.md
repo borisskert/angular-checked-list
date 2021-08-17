@@ -6,4 +6,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Links
 
-* [This solution @ codesandbox](https://codesandbox.io/s/green-sunset-4zmc4)
+* [This solution @ codesandbox](https://codesandbox.io/s/angular-checked-list-4zmc4)
